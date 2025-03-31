@@ -1,2 +1,3 @@
 # Learning-TypeScript
-This repository is for learning TypeScript.
+
+This repository is for learning TypeScript with pnpm.
