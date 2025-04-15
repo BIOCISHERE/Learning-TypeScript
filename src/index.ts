@@ -1,5 +1,7 @@
 // This is a comment in TypeScript
 
+import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from "cookies-utils";
+
 /**
  * * This is a multi-line comment in TypeScript
  */
@@ -399,3 +401,47 @@ console.log(generatorSaga.next().value); // 1 (Done by worker)
 console.log(generatorSaga.next().value); // 2 (Done by worker)
 console.log(generatorSaga.next().value); // 3 (Done by worker)
 console.log(generatorSaga.next().value); // 4 (Done by watcher)
+
+// Cookies
+
+const cookieOptions = {
+  name: "user",
+  value: "Larry",
+  maxAge: 10 * 60,
+  expires: new Date(2099, 10, 1),
+  path: "/",
+};
+
+// We set the cookie
+setCookie(cookieOptions);
+
+// Read a cookie
+let readCookie = getCookieValue("user");
+
+// Delete
+deleteCookie("user");
+
+// Delete all cookies
+deleteAllCookies();
+
+// Tempo class
+class Tempo {
+  public finish?: (time: number) => void;
+
+  public start(): void {
+    setTimeout(() => {
+      if (!this.finish) return;
+      this.finish(Date.now());
+    }, 10000);
+  }
+}
+
+const myTempo: Tempo = new Tempo();
+
+myTempo.finish = (time: number) => {
+  console.log("Finished event at: ", time);
+};
+
+myTempo.start();
+
+delete myTempo.finish;
