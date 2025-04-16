@@ -445,3 +445,54 @@ myTempo.finish = (time: number) => {
 myTempo.start();
 
 delete myTempo.finish;
+
+class Classes {
+  name: string;
+  hours: number;
+
+  constructor(name: string, hours: number) {
+    this.name = name;
+    this.hours = hours;
+  }
+}
+
+class Student {
+  // Class properties
+  name: string;
+  lastname?: string;
+  classes: Classes[];
+
+  // Constructor
+  constructor(name: string, classes: Classes[], lastname?: string) {
+    this.name = name;
+    if (lastname) {
+      this.lastname = lastname;
+    }
+    this.classes = classes;
+  }
+}
+
+// New Classes
+
+const classTS: Classes = new Classes("TypeScript", 15);
+const classJS: Classes = new Classes("JavaScript", 20);
+
+const classesList: Classes[] = [];
+
+classesList.push(classTS, classJS);
+
+// New Student
+
+const larry: Student = new Student("Larry", classesList, "Evil");
+
+console.log(`${larry.name} studies: `);
+larry.classes.forEach((clas: Classes) => {
+  console.log(`- ${clas.name} (${clas.hours} hours)`);
+});
+
+const classAngular: Classes = new Classes("Angular", 40);
+larry.classes.push(classAngular);
+
+// Know the instance of an object/variable
+// - TypeOf
+// - InstanceOf
