@@ -1,6 +1,9 @@
 // This is a comment in TypeScript
 
 import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from "cookies-utils";
+import { Classes } from "./models/Classes";
+import { Student } from "./models/Student";
+import { CLASSES_LIST } from "./mock/classes.mock";
 
 /**
  * * This is a multi-line comment in TypeScript
@@ -446,40 +449,19 @@ myTempo.start();
 
 delete myTempo.finish;
 
-class Classes {
-  name: string;
-  hours: number;
-
-  constructor(name: string, hours: number) {
-    this.name = name;
-    this.hours = hours;
-  }
-}
-
-class Student {
-  // Class properties
-  name: string;
-  lastname?: string;
-  classes: Classes[];
-
-  // Constructor
-  constructor(name: string, classes: Classes[], lastname?: string) {
-    this.name = name;
-    if (lastname) {
-      this.lastname = lastname;
-    }
-    this.classes = classes;
-  }
-}
+// ** Classes
 
 // New Classes
 
-const classTS: Classes = new Classes("TypeScript", 15);
-const classJS: Classes = new Classes("JavaScript", 20);
+//const classTS: Classes = new Classes("TypeScript", 15);
+//const classJS: Classes = new Classes("JavaScript", 20);
 
-const classesList: Classes[] = [];
+//const classesList: Classes[] = [];
 
-classesList.push(classTS, classJS);
+//classesList.push(classTS, classJS);
+
+// We use the MOCK
+const classesList: Classes[] = CLASSES_LIST;
 
 // New Student
 
@@ -492,6 +474,9 @@ larry.classes.forEach((clas: Classes) => {
 
 const classAngular: Classes = new Classes("Angular", 40);
 larry.classes.push(classAngular);
+
+// Know studied hours
+larry.studiedHours; // number
 
 // Know the instance of an object/variable
 // - TypeOf
