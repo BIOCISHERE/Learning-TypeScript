@@ -4,6 +4,7 @@ import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from "cooki
 import { Classes } from "./models/Classes";
 import { Student } from "./models/Student";
 import { CLASSES_LIST } from "./mock/classes.mock";
+import { Boss, Employee } from "./models/Person";
 
 /**
  * * This is a multi-line comment in TypeScript
@@ -481,3 +482,30 @@ larry.studiedHours; // number
 // Know the instance of an object/variable
 // - TypeOf
 // - InstanceOf
+
+let birthday = new Date(1991, 10, 10);
+
+if (birthday instanceof Date) {
+  console.log("It's a instance of Date");
+}
+
+if (larry instanceof Student) {
+  console.log("Larry is a student");
+}
+
+// Inheritance and Polymorphism
+
+let employee1 = new Employee("Larry", "Evil", 30, 2000);
+let employee2 = new Employee("Charli", "Good", 21, 1000);
+let employee3 = new Employee("James", "Megaevil", 40, 3000);
+
+let boss = new Boss("Pablo", "Escobar", 50);
+
+boss.employees.push(employee1, employee2, employee3);
+
+employee1.greet(); // Inheritance of Employee
+boss.greet(); // Inheritance of Person
+
+boss.employees.forEach((employee: Employee) => {
+  employee.greet(); // Inheritance of Employee
+});
