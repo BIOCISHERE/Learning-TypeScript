@@ -5,6 +5,8 @@ import { Classes } from "./models/Classes";
 import { Student } from "./models/Student";
 import { CLASSES_LIST } from "./mock/classes.mock";
 import { Boss, Employee } from "./models/Person";
+import { ITask, Level } from "./models/interfaces/ITask";
+import { Program } from "./models/Program";
 
 /**
  * * This is a multi-line comment in TypeScript
@@ -509,3 +511,69 @@ boss.greet(); // Inheritance of Person
 boss.employees.forEach((employee: Employee) => {
   employee.greet(); // Inheritance of Employee
 });
+
+// Interface use
+let program: ITask = {
+  tittle: "Program with TypeScript",
+  description: "Practice to learn how to develop with TypeScript",
+  completed: false,
+  urgency: Level.Urgent,
+  summary: function (): string {
+    return `${this.tittle} - ${this.completed} - Level: ${this.urgency}`;
+  },
+};
+
+console.log(program.summary());
+
+// Program task (implements ITask)
+
+let programTS = new Program("TypeScript", false, "Program task with TypeScript", Level.Blocking);
+console.log(programTS.summary());
+
+// Experimental decorators ---> @
+// - Class
+// - Params
+// - Metods
+// - Properties
+
+function Override(label: string) {
+  return function (target: any, key: string) {
+    Object.defineProperty(target, key, { configurable: false, get: () => label });
+  };
+}
+
+class DecoratorTest {
+  @Override("Test")
+  name: string = "Larry";
+}
+
+let test = new DecoratorTest();
+console.log(test.name); // Always returns "Test" threw the get()
+
+function ReadOnly(target: any, key: string) {
+  Object.defineProperty(target, key, {
+    writable: false,
+  });
+}
+
+class TestReadOnly {
+  @ReadOnly
+  name: string = "";
+}
+
+let testRead = new TestReadOnly();
+testRead.name = "Larry";
+
+console.log(testRead.name); // ---> Undefined, cant assign new value (it's read only)
+
+function showPosition(target: any, propertyKey: string, parameterIndex: number) {
+  console.log("Position", parameterIndex);
+}
+
+class TestDecoratorMetod {
+  test(a: string, @showPosition b: boolean) {
+    console.log(b);
+  }
+}
+
+new TestDecoratorMetod().test("hola", false);
