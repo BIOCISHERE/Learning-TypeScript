@@ -150,6 +150,7 @@ dist
 
 node_modules
 build
+.vscode
 
 *.sublime*
 

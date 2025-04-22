@@ -536,44 +536,44 @@ console.log(programTS.summary());
 // - Metods
 // - Properties
 
-function Override(label: string) {
+/*function Override(label: string) {
   return function (target: any, key: string) {
     Object.defineProperty(target, key, { configurable: false, get: () => label });
   };
-}
+}*/
 
-class DecoratorTest {
+/*class DecoratorTest {
   @Override("Test")
   name: string = "Larry";
-}
+}*/
 
-let test = new DecoratorTest();
-console.log(test.name); // Always returns "Test" threw the get()
+/*let test = new DecoratorTest();
+console.log(test.name); // Always returns "Test" threw the get()*/
 
-function ReadOnly(target: any, key: string) {
+/*function ReadOnly(target: any, key: string) {
   Object.defineProperty(target, key, {
     writable: false,
   });
-}
+}*/
 
-class TestReadOnly {
+/*class TestReadOnly {
   @ReadOnly
   name: string = "";
-}
+}*/
 
-let testRead = new TestReadOnly();
-testRead.name = "Larry";
+/*let testRead = new TestReadOnly();
+testRead.name = "Larry";*/
 
-console.log(testRead.name); // ---> Undefined, cant assign new value (it's read only)
+//console.log(testRead.name); // ---> Undefined, cant assign new value (it's read only)
 
-function showPosition(target: any, propertyKey: string, parameterIndex: number) {
+/*function showPosition(target: any, propertyKey: string, parameterIndex: number) {
   console.log("Position", parameterIndex);
-}
+}*/
 
-class TestDecoratorMetod {
+/*class TestDecoratorMetod {
   test(a: string, @showPosition b: boolean) {
     console.log(b);
   }
-}
+}*/
 
-new TestDecoratorMetod().test("hola", false);
+//new TestDecoratorMetod().test("hola", false);
